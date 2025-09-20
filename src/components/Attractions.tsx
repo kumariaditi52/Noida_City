@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import techImage from "@/assets/noida-tech.jpg";
 import parkImage from "@/assets/noida-park.jpg";
 import commercialImage from "@/assets/noida-commercial.jpg";
@@ -12,21 +13,24 @@ const Attractions = () => {
       description: "The heart of Noida's technology sector, housing major IT companies, corporate offices, and innovation centers.",
       image: techImage,
       category: "Technology",
-      highlights: ["200+ IT Companies", "Modern Office Spaces", "Tech Innovation"]
+      highlights: ["200+ IT Companies", "Modern Office Spaces", "Tech Innovation"],
+      slug: "sector-62"
     },
     {
       title: "Central Park",
       description: "A sprawling green oasis in the city center, perfect for recreation, morning walks, and family gatherings.",
       image: parkImage,
       category: "Recreation",
-      highlights: ["25 Acres", "Lake & Fountains", "Family Friendly"]
+      highlights: ["25 Acres", "Lake & Fountains", "Family Friendly"],
+      slug: "central-park"
     },
     {
       title: "The Great India Place",
       description: "Premier shopping and entertainment destination with international brands, restaurants, and cinema.",
       image: commercialImage,
       category: "Shopping",
-      highlights: ["200+ Stores", "Entertainment Zone", "Fine Dining"]
+      highlights: ["200+ Stores", "Entertainment Zone", "Fine Dining"],
+      slug: "great-india-place"
     }
   ];
 
@@ -83,14 +87,18 @@ const Attractions = () => {
                 </div>
                 
                 <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="flex-1">
-                    <MapPin className="mr-2 h-4 w-4" />
-                    Location
-                  </Button>
-                  <Button size="sm" className="flex-1">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Explore
-                  </Button>
+                  <Link to={`/location/${attraction.slug}`}>
+                    <Button variant="outline" size="sm" className="flex-1">
+                      <MapPin className="mr-2 h-4 w-4" />
+                      Location
+                    </Button>
+                  </Link>
+                  <Link to={`/attraction/${attraction.slug}`}>
+                    <Button size="sm" className="flex-1">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Read More
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
